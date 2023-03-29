@@ -17,26 +17,20 @@ export default function Chat() {
   const [step, setStep] = useState(0);
 
   async function init() {
-    console.log("init");
     if (!utilityId) return;
     setStep(0);
     if (utility) {
-      console.log("destroying old utility");
       utility.destroy();
     }
     try {
       const tmpUtility = await whal3s.createValidationUtility(utilityId);
-      console.log("tmp", tmpUtility);
       tmpUtility.addEventListener("stepChanged", (step) => {
-        console.log("setting step to ", step.detail.step);
         setUtility(tmpUtility);
-        console.log(tmpUtility.nfts.nfts[0].engagements);
+
         setStep(step.detail.step);
       });
       setUtility(tmpUtility);
       setStep(tmpUtility.step);
-      console.log("step", tmpUtility.step);
-      console.log(NftValidationUtility.STEP_CLAIMED, "claimed");
     } catch (e) {
       setUtility(undefined);
     }
@@ -61,15 +55,12 @@ export default function Chat() {
     const room = "General Room";
 
     socket.emit("join", { name, room }, (error) => {
-      console.log(name, room);
       if (error) {
-        console.log(error);
         alert(error);
       }
     });
 
     socket.on("message", (message) => {
-      console.log(messages);
       setMessages((messages) => [...messages, message]);
     });
   }, []);
