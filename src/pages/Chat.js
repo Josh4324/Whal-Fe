@@ -51,7 +51,7 @@ export default function Chat() {
   const [message, setMessage] = useState("");
   const [first, setFirst] = useState(true);
 
-  const ENDPOINT = "http://104.248.129.67";
+  const ENDPOINT = "https://chat.keepitdefi.io";
 
   useEffect(() => {
     const { name } = queryString.parse(location.search);
