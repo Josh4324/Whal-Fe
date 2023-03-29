@@ -148,9 +148,7 @@ export default function Chat() {
             </form>
           </div>
         ) : (
-          <div className="chat-text">
-            You do not have access to the chat room
-          </div>
+          <div className="chat-text"></div>
         )}
       </div>
     </div>
